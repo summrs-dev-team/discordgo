@@ -36,9 +36,13 @@ type User struct {
 	// The user's username.
 	Username string `json:"username"`
 
-	// The hash of the user's avatar. Use Session.UserAvatar
+	// The hash of the user's avatar. Use Session.UserAvatarDecode
 	// to retrieve the avatar itself.
 	Avatar string `json:"avatar"`
+
+	// The hash of the user's avatar. Use Session.UserBannerDecode
+	// to retrieve the avatar itself.
+	Banner string `json:"banner"`
 
 	// The user's chosen language option.
 	Locale string `json:"locale"`
