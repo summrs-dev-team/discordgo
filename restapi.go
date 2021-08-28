@@ -307,6 +307,16 @@ func (s *Session) UserAvatarDecode(u *User) (img image.Image, err error) {
 	return
 }
 
+func (s *Session) UserBannerDecode(u *User) (img image.Image, err error) {
+	body, err := s.RequestWithBucketID("GET", EndpointUserBanner(u.ID, u.Banner), nil, EndpointUserBanner("", ""))
+	if err != nil {
+		return
+	}
+
+	img, _, err = image.Decode(bytes.NewReader(body))
+	return
+}
+
 // UserUpdate updates a users settings.
 func (s *Session) UserUpdate(email, password, username, avatar, newPassword string) (st *User, err error) {
 
