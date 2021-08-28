@@ -307,6 +307,18 @@ func (s *Session) UserAvatarDecode(u *User) (img image.Image, err error) {
 	return
 }
 
+
+// UserAvatar is deprecated. Please use UserAvatarDecode
+// userID    : A user ID or "@me" which is a shortcut of current user ID
+func (s *Session) UserBanner(userID string) (img image.Image, err error) {
+	u, err := s.User(userID)
+	if err != nil {
+		return
+	}
+	img, err = s.UserBannerDecode(u)
+	return
+}
+
 func (s *Session) UserBannerDecode(u *User) (img image.Image, err error) {
 	body, err := s.RequestWithBucketID("GET", EndpointUserBanner(u.ID, u.Banner), nil, EndpointUserBanner("", ""))
 	if err != nil {
